@@ -38,7 +38,7 @@ module LDAP
       values = []
 
       OpenSSL::ASN1::decode( self.value ).value.each do |val|
-	values << val.value
+	      values << val.value
       end
 
       values
