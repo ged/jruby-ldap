@@ -1,6 +1,14 @@
 require 'java'
 
 module LDAP
+
+  VERSION = "0.0.1.1"
+
+  MAJOR_VERSION = VERSION[ /^(\d+)\.(\d+)\.(\d+)/, 1 ].to_i
+  MINOR_VERSION = VERSION[ /^(\d+)\.(\d+)\.(\d+)/, 2 ].to_i
+  PATCH_VERSION = VERSION[ /^(\d+)\.(\d+)\.(\d+)/, 3 ].to_i
+
+
   def self.err2string(err)
     case err||0
     when -1: "Can't contact LDAP server"

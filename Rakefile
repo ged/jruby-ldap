@@ -17,24 +17,15 @@ task :filelist do
   puts FileList['pkg/**/*'].inspect
 end
 
-MANIFEST = FileList["lib/**/*.rb", "test/**/*.rb", "Rakefile", "LICENSE", "README"]
-
-file "Manifest.txt" => :manifest
-task :manifest do
-  File.open("Manifest.txt", "w") {|f| MANIFEST.each {|n| f << "#{n}\n"} }
-end
-
-Rake::Task['manifest'].invoke # Always regen manifest, so Hoe has up-to-date list of files
-
 begin
   require 'hoe'
-  Hoe.new("jruby-ldap", "0.0.1") do |p|
+  Hoe.spec("jruby-ldap") do |p|
     p.rubyforge_name = "jruby-extras"
     p.url = "http://jruby-extras.rubyforge.org/jruby-ldap"
     p.author = "Ola Bini"
     p.email = "ola.bini@gmail.com"
     p.summary = "Port of Ruby/LDAP to JRuby"
-  end.spec.dependencies.delete_if { |dep| dep.name == "hoe" }
+  end
 rescue LoadError
   puts "You really need Hoe installed to be able to package this gem"
 rescue => e
