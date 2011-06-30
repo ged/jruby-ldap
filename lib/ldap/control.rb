@@ -1,6 +1,6 @@
 # Manipulation of LDAP control data.
 #
-# $Id: control.rb,v 1.2 2005/02/28 05:02:25 ianmacd Exp $
+# $Id$
 #
 # Copyright (C) 2004 Ian Macdonald <ian@caliban.org>
 #
@@ -15,7 +15,7 @@ module LDAP
     #
     def Control.encode( *vals )
       encoded_vals = []
-     
+
       vals.each do |val|
         encoded_vals <<
           case val
@@ -27,7 +27,7 @@ module LDAP
             # What other types may exist?
           end
       end
-   
+
       OpenSSL::ASN1::Sequence.new( encoded_vals ).to_der
     end
 
